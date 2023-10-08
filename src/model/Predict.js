@@ -9,7 +9,10 @@ function Predict(props) {
     try {
       // Define the data you want to send in the request body
       const requestData = {
-        input_data: inputData,
+        input1: inputData[0],
+        input2: inputData[1],
+        input3: inputData[2],
+        input4: inputData[3],
       };
 
       // Replace 'https://your-server-url.com/model-endpoint' with your actual model endpoint
@@ -36,7 +39,7 @@ function Predict(props) {
 
   return (
     <div>
-      <button onClick={handlePredictionClick}>Get Predictions</button>
+      <button className="border-2 border-neutral-900 ml-4" onClick={handlePredictionClick}>Get Predictions</button>
     </div>
   );
 }

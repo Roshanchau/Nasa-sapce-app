@@ -47,40 +47,26 @@ const Map = () => {
   let circleStyles;
   let circles;
 
-  if(result===2){
- circles = [
-      { latitude: latlng.lat, longitude: latlng.lng, radius: 500 },
-    ];
 
-    circleStyles={
+  if (result === "2") {
+    circles = [{ latitude: latlng.lat, longitude: latlng.lng, radius: 10000 }];
+
+    circleStyles = {
       color: "red",
       fillColor: "#f03",
       fillOpacity: 0.5,
-    }
-  }else if(result===1){
-     circles = [
-      { latitude: latlng.lat, longitude: latlng.lng, radius: 100 },
-    ];
-    circleStyles={
+    };
+  } else if (result === "1") {
+    circles = [{ latitude: latlng.lat, longitude: latlng.lng, radius: 10000 }];
+    circleStyles = {
       color: "yellow",
-      fillColor: "#f03",
+      fillColor: "yellow", // Set to yellow color
       fillOpacity: 0.2,
-    }
+    };
+  } else {
+    circles = [];
+    circleStyles = {};
   }
-  else{
-    circles=[];
-    circleStyles={}
-  }
-  // circles = [
-  //   { latitude: latlng.lat, longitude: latlng.lng, radius: 500 },
-  // ];
-
-  // circleStyles={
-  //   color: "red",
-  //   fillColor: "#f03",
-  //   fillOpacity: 0.5,
-  // }
-
 
   // Function to handle circle click event
   const handleCircleClick = (e, circleData) => {
@@ -91,7 +77,7 @@ const Map = () => {
   return (
     <div>
       <MapContainer
-        center={ [51.505, -0.09]}
+        center={ [28.3949, 84.1240]}
         zoom={13}
         scrollWheelZoom={false}
         style={mapStyles}
@@ -101,7 +87,7 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={[latlng.lat, latlng.lng]}>
-          <Popup position={[51.505, -0.09]}>
+          <Popup position={[latlng.lat, latlng.lng]}>
             <p>hello</p>
           </Popup>
         </Marker>
@@ -123,30 +109,43 @@ const Map = () => {
 
 <LocationFinderDummy />
       </MapContainer>
-
+      <div className="mt-4 flex-col p-4">
+      <div>
       <label htmlFor="Latitude">Latitude</label>
       <input
         type="text"
         value={latlng.lat}
+        className="border-2 border-neutral-700 ml-2"
       />
-      <label htmlFor="longitude">Longitude</label>
+      <label htmlFor="longitude" className="ml-2">Longitude</label>
       <input
         type="text"
         value={latlng.lng}
+        className="border-2 border-neutral-700 ml-2"
       />
-      <label htmlFor="longitude">month</label>
+      </div>
+
+      <div className="mt-4">
+      <label htmlFor="month">month</label>
       <input
         type="number"
         value={month}
+        className="border-2 border-neutral-700 ml-2"
         onChange={(e)=>setMonth(e.target.value)}
       />
-      <label htmlFor="longitude">day</label>a
+      <label htmlFor="day" className="ml-2">day</label>
       <input
         type="number"
         value={day}
+        className="border-2 border-neutral-700 ml-2"
         onChange={(e)=>setDay(e.target.value)}
 
       />
+      </div>
+      
+      
+      </div>
+
       <Predict latitude={latlng.lat} longitude={latlng.lng} month={month} day={day} setResult={setResult}/>
           </div>
   );
